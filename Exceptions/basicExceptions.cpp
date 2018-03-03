@@ -9,7 +9,15 @@ void throwException() {
 }
 
 int main() {
-	throwException();
-	return 0;
+    try {
+        throwException();
+    }
+
+    catch (int e) {
+	cout << "Error code: " << e << endl;
+    }
+
+    
+    return 0;
 }
 
