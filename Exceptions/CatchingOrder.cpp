@@ -20,11 +20,13 @@ int main()
     try {
 	badStuff();
     }
-    catch(exception &e) {
-	cout << "Exception Occurred: " << e.what() << endl;
-    }
+   
     catch(bad_alloc &e) {
 	cout << "Bad Alloc Occured: " <<  e.what() << endl;
+    }
+    
+    catch(exception &e) {
+	cout << "Exception Occurred: " << e.what() << endl;
     }
 
 
