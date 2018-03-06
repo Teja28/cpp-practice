@@ -13,7 +13,7 @@ public:
     }
 
     Person(const Person &diff) {
-	cout << "Copy" << endl;
+	//cout << "Copy" << endl;
         this->name = diff.name;
         this->age = diff.age;
     }
@@ -22,10 +22,18 @@ public:
 	name(name), age(age){
     }
 
-    void print(){
-	cout << name << ":" << age << endl;
+    void print() const{
+	cout << name << ":" << age << flush;
     }
 
+    // const parameter and function to not change either object in comparison
+    bool operator<(const Person &other) const {
+        // if names are same compare ages
+	if(name == other.name) {
+	     return age < other.age;
+	}    
+	return name < other.name;
+    }
 };
 
 
@@ -44,5 +52,23 @@ int main(){
     for(map<int,Person>::iterator it = people.begin(); it != people.end();it++)
     {
 	it->second.print();
+	cout << endl;
     }
+
+    //people as keys
+    map<Person,int> people2;
+
+    people2[Person("Mike",40)] = 40;
+    people2[Person("Sam",23)] = 52;
+    people2[Person("Teja",22)] = 21;
+    people2[Person("Mike",444)] = 49;
+
+    for(map<Person,int>::iterator it = people2.begin(); it != people2.end();it++)
+    {
+	cout << it->second << ": " << flush;
+        it->first.print();
+        cout << endl;
+    }
+
+    
 }    
