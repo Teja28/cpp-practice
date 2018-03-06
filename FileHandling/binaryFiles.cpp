@@ -43,5 +43,33 @@ int main() {
     else {
 	cout << "Couldn't read file:" +fileName2 << endl;
     }
-}
+
+    Person1 readSameGuy = {};
+    Person2 readNewGuy = {};
+    ifstream inputFile1, inputFile2;
+    inputFile1.open(fileName2, ios::binary);
+    inputFile2.open(fileName1, ios::binary);
+
+    if (inputFile1.is_open()) {
+	inputFile1.read(reinterpret_cast<char *>(&readSameGuy), sizeof(Person1));
+        inputFile1.close();
+    }
+
+    if(inputFile2.is_open()){
+	inputFile2.read(reinterpret_cast<char *>(&readNewGuy),sizeof(Person2));
+        inputFile2.close();
+    }
+
+    cout << "Person 2 read as Person 1:" << endl;
+    cout << "Name: " << readSameGuy.name << endl;
+    cout << "Age: " << readSameGuy.age << endl;
+    cout << "Weight: " << readSameGuy.weight << endl;
     
+
+    cout << "Person 1 read as Person 2:" << endl;
+    cout << "Name: " << readNewGuy.name << endl;
+    cout << "Age: " << readNewGuy.age << endl;
+    cout << "Weight: " << readNewGuy.weight << endl;
+
+}
+   
